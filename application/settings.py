@@ -41,9 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
     'core.apps.CoreConfig',
-    'socnet',
+    'socnet.apps.SocnetConfig',
+    'abstracts.apps.AbstractsConfig',
+    'communications.apps.CommunicationsConfig',
+    'public.apps.PublicConfig',
+    'likes.apps.LikesConfig',
+    'feed.apps.FeedConfig',
+    'awards.apps.AwardsConfig',
+    'debug_toolbar.apps.DebugToolbarConfig',
 ]
 
 MIDDLEWARE = [

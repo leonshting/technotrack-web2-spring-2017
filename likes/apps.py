@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 
 
-class SocnetConfig(AppConfig):
-    name = 'socnet'
+class LikesConfig(AppConfig):
+    name = 'likes'
 
     def ready(self):
         from . import signals
