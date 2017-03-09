@@ -7,7 +7,6 @@ from django.db import models
 
 class User(AbstractUser):
 
-
     friends = models.ManyToManyField('self', symmetrical=False, through='socnet.Friend')
     friends_count = models.IntegerField(default=0)
     blacklisted = models.ManyToManyField('self',

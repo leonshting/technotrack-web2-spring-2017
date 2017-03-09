@@ -4,6 +4,7 @@ from django.db import models
 
 from abstracts.models import CreatedMixin, AuthoredMixin
 
+
 #TODO: deletetion events for every eventable or throw
 class EventType(models.Model):
     event_name = models.TextField()
