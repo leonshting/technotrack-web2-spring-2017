@@ -1,19 +1,20 @@
-from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes.fields import GenericRelation, GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from abstracts.models import AuthoredMixin, CreatedMixin
+from abstracts.models import AuthoredMixin, CreatedMixin, GenericRelatedMixin
 from feed.models import EventableMixin
 from likes.models import LikableMixin
 
 
-#TODO: probably should make comment generic related, i.e. we need to comment some other things but posts
-class Comment(AuthoredMixin, CreatedMixin, LikableMixin, EventableMixin):
+class Comment(AuthoredMixin, CreatedMixin, LikableMixin, EventableMixin, GenericRelatedMixin):
+
     content = models.TextField()
-    post = models.ForeignKey('public.Post')
 
     def __str__(self):
-        return "Comment by {} to post {} ".format(self.author, self.post_id)
+        return "Comment by {} to {} {} ".format(self.author,
+                                                ContentType.model_class(self.content_type).__name__,
+                                                self.object)
 
 
 class CommentableMixin(models.Model):

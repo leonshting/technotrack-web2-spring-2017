@@ -11,10 +11,13 @@ from feed.models import EventableMixin
 
 class Friendship(CreatedMixin, AuthoredMixin, EventableMixin):
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='recipient')
-    approved = models.BooleanField()
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return "friendship bw {} and {}".format(self.recipient, self.author)
+
+    class Meta:
+        unique_together = ['author', 'recipient']
 
 
 class Friend(CreatedMixin):

@@ -9,8 +9,10 @@ def create_event_on_eventable_save(instance, created=False, *args, **kwargs):
     if issubclass(instance.__class__, EventableMixin):
         event_type = EventType.objects.get(
             content_type=ContentType.objects.get_for_model(instance),
-            created=created
+            created=created,
+            modified=(not created)
         )
+        print(event_type)
         event = Event.from_instance_and_event_type(instance, event_type)
         event.save()
 

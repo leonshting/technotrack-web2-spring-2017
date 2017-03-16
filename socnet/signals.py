@@ -13,7 +13,7 @@ def friendship_init_handler(instance, created=False, *args, **kwargs):
     Friend.objects.update_or_create(
         foofriend=friends[1-int(created)],
         barfriend=friends[int(created)],
-        defaults={"friendship":instance}
+        defaults={"friendship": instance}
     )
 
 

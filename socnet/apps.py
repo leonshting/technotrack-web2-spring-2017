@@ -6,3 +6,4 @@ class SocnetConfig(AppConfig):
 
     def ready(self):
         from . import signals
+        from . import api

@@ -3,14 +3,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
 
-from abstracts.models import CreatedMixin, AuthoredMixin
+from abstracts.models import CreatedMixin, AuthoredMixin, GenericRelatedMixin
 from feed.models import EventableMixin
 
 
-class Like(AuthoredMixin, CreatedMixin, EventableMixin):
-    content_type = models.ForeignKey(ContentType, related_name='content_type')
-    object = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type', 'object')
+class Like(AuthoredMixin, CreatedMixin, EventableMixin, GenericRelatedMixin):
 
     def __str__(self):
         return "like from {} to {} {}".format(self.author, self.content_type, self.object)
