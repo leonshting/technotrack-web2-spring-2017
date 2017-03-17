@@ -4,7 +4,7 @@ from rest_framework.reverse import reverse
 
 from application.api import router
 from .models import Post, Comment
-from .permissions import IsOwnerOrReadOnly, TimeFromCreation, IsFriend, IsCommentRelatedToFriendObject
+from .permissions import IsOwnerOrReadOnly, TimeFromCreation, IsFriend, IsCommentRelatedToFriendObject, IsCommentable
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -33,7 +33,8 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated,
                           IsOwnerOrReadOnly,
                           TimeFromCreation,
-                          IsCommentRelatedToFriendObject
+                          IsCommentRelatedToFriendObject,
+                          IsCommentable
                           ]
     queryset = Comment.objects.all()
 

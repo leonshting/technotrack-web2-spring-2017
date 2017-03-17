@@ -41,6 +41,8 @@ class UserCreateSerializer(UserSerializer):
         return user
 
 
+
+
 class UserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
@@ -50,7 +52,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         serializer_class = self.serializer_class
-        if self.request.method == 'POST':
+        if self.request.method in ['POST','PUT','PATCH']:
             serializer_class = UserCreateSerializer
         return serializer_class
 
