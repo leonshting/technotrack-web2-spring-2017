@@ -3,6 +3,14 @@ from rest_framework import serializers, viewsets
 from .models import User
 from .permissions import OwnerOrSafeMethods
 from application.api import router
+from rest_auth.models import TokenModel
+
+
+class TokenSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TokenModel
+        fields = ('key', 'user')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -10,11 +18,18 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     friends_count = serializers.ReadOnlyField()
 
     class Meta:
-        fields = ('url', 'username', 'email', 'friends_count')
+        fields = ('pk', 'url', 'username', 'email', 'friends_count')
         model = User
         extra_kwargs = {
             'url': {'view_name': 'user-detail'}
         }
+
+
+class UserCutSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ('pk', 'username')
+        model = User
 
 
 class UserCreateSerializer(UserSerializer):

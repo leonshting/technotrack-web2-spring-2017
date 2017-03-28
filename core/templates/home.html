@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
 {% block login %}
     <a href={% url "core:login"%}> LOGIN!!!! </a>
 {% endblock%}
 {% block content %}
-    <p>{{ user }}</p>
+    <div id="root"></div>
 {% endblock %}
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/styles/layout.css">
+<link rel="stylesheet" href="/static/styles/feed.css">
+<script src="/static/build/app.js"></script>
+
 </body>
 </html>

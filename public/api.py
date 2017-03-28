@@ -5,6 +5,7 @@ from rest_framework.reverse import reverse
 from application.api import router
 from .models import Post, Comment
 from .permissions import IsOwnerOrReadOnly, TimeFromCreation, IsFriend, IsCommentRelatedToFriendObject, IsCommentable
+from core.api import UserCutSerializer
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -48,11 +49,11 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='author_id')
+    author = UserCutSerializer()
 
     class Meta:
         model = Post
-        fields = 'author', 'content', 'pk'
+        fields = 'author', 'content', 'pk', 'likes_count'
 
 
 class PostViewSet(viewsets.ModelViewSet):

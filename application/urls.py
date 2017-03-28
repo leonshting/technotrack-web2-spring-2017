@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
     url(r'^social/', include('social_django.urls', namespace='social')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
     url('', include('core.urls', namespace='core')),
 ]
 

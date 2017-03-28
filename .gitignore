@@ -1,3 +1,5 @@
 *.pyc
 .idea
 **/migrations
+node_modules/
+/static/build/
